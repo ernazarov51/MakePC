@@ -86,7 +86,7 @@ class CommentCreateAPIView(CreateAPIView):
         context['request']=self.request
         post_id=self.kwargs['post_id']
         print(post_id)
-        post=Post.objects.filter(id=post_id)
+        post=Post.objects.filter(id=post_id).first()
         context['post_id']=post.id
         return context
 
