@@ -74,7 +74,7 @@ class PostCreateAPIView(CreateAPIView):
         context['request'] = self.request
         return context
 
-
+@extend_schema(tags=['Seller'])
 class CommentCreateAPIView(CreateAPIView):
     serializer_class = CommentCreateModelSerializer
     permission_classes = [IsAuthenticated]
