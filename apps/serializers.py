@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -17,4 +18,11 @@ class RegisterModelSerializer(ModelSerializer):
 
     def validate(self, attrs):
         attrs['username']=attrs['email']
+        attrs['password']=make_password(attrs['password'])
         return attrs
+
+
+class ProfileModelSerializer(ModelSerializer):
+    class Meta:
+        model=User
+        fields=['id','first_name','last_name','email','role']
