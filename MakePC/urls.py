@@ -22,7 +22,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from apps.views import CustomTokenObtainPairView
 
 urlpatterns = [
-path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+path('api/v1/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
