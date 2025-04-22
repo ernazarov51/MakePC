@@ -105,5 +105,5 @@ class CommentCreateModelSerializer(ModelSerializer):
 
     def validate(self, attrs):
         attrs['seller']=self.context['request'].user
-        attrs['post']=self.context['post']
+        attrs['post_id']=self.context['post_id']
         return attrs
