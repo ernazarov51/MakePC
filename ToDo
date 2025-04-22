@@ -2,13 +2,13 @@ endpoints:
 
     user panel:
 
-        POST api/v1login/
-        POST api/v1/register/
-        GET api/v1/profile/
-        GET api/v1/posts/ user o'ziga tegishli barcha postlarni oladi
-        GET api/v1/post-detail/ postni batafsil detail larini berib yuborish + commentlarni ham
-        GET api/v1/comments/ seller barcha commentlarini oladi
-        POST api/v1/create-post/ customer post yaratadi
+        POST api/v1login/ ✅
+        POST api/v1/register/ ✅
+        GET api/v1/profile/ ✅
+        GET api/v1/posts/ user o'ziga tegishli barcha postlarni oladi ✅
+        GET api/v1/post-detail/ postni batafsil detail larini berib yuborish + commentlarni ham ✅
+        GET api/v1/comments/ seller barcha commentlarini oladi ✅
+        POST api/v1/create-post/ customer post yaratadi ✅
         POST api/v1/create-comment/{post_id}/ seller post uchun comment yaratadi
         PATCH|PUT api/v1/edit-post/{post_id} customer postni update qila oladi
 
