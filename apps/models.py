@@ -42,7 +42,7 @@ class CustomUserManager(UserManager):
 # Create your models here.
 class User(AbstractUser):
     class Roles(models.TextChoices):
-        operator = 'seller', 'seller'
+        seller = 'seller', 'seller'
         customer = 'customer', 'Customer'
 
     USERNAME_FIELD = 'email'

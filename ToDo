@@ -2,7 +2,7 @@ endpoints:
 
     user panel:
 
-        POST api/v1login/ ✅
+        POST api/v1/login/ ✅
         POST api/v1/register/ ✅
         GET api/v1/profile/ ✅
         GET api/v1/posts/ user o'ziga tegishli barcha postlarni oladi ✅
@@ -10,9 +10,10 @@ endpoints:
         GET api/v1/comments/ seller barcha commentlarini oladi ✅
         POST api/v1/create-post/ customer post yaratadi ✅
         POST api/v1/create-comment/{post_id}/ seller post uchun comment yaratadi ✅
-        PATCH|PUT api/v1/edit-post/{post_id} customer postni update qila oladi
-        DELETE api/v1/delete-post/{post_id} customer o'zb postlarini delete qila olsin
-        DELETE api/v1/delete-comment/{comment_id} customer o'zb commentlarini delete qila olsin
+        PATCH|PUT api/v1/edit-post/{post_id} customer postni update qila oladi ✅
+        DELETE api/v1/delete-post/{post_id} customer o'zb postlarini delete qila olsin ✅
+        DELETE api/v1/delete-comment/{comment_id} customer o'zb commentlarini delete qila olsin ✅
+        DELETE api/v1/all-posts/barcha postlar qayarilsin ✅
 
     admin panel:
         POST api/v1login/
