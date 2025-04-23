@@ -42,7 +42,7 @@ class AllPostForUserModelSerializer(ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'text']
+        fields = ['id', 'text','phone_number','price']
 
     def get_text(self, obj):
         return obj.text[:100] if len(obj.text) >= 100 else obj.text
@@ -107,3 +107,9 @@ class CommentCreateModelSerializer(ModelSerializer):
         attrs['seller']=self.context['request'].user
         attrs['post_id']=self.context['post_id']
         return attrs
+
+
+class EditPostModelSerializer(ModelSerializer):
+    class Meta:
+        model=Post
+        fields=['text','phone_number','price']
