@@ -1,9 +1,9 @@
 from django.contrib.auth.hashers import make_password
-from rest_framework.fields import SerializerMethodField
+from rest_framework.fields import SerializerMethodField, CharField
 from rest_framework.serializers import ModelSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from apps.models import User, Post, Comment
+from apps.models import User, Post, Comment, Category, Product
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -42,7 +42,7 @@ class AllPostForUserModelSerializer(ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'text','phone_number','price']
+        fields = ['id', 'text', 'phone_number', 'price']
 
     def get_text(self, obj):
         return obj.text[:100] if len(obj.text) >= 100 else obj.text
@@ -100,16 +100,44 @@ class PostCreateModelSerializer(ModelSerializer):
 
 class CommentCreateModelSerializer(ModelSerializer):
     class Meta:
-        model=Comment
-        fields=['text']
+        model = Comment
+        fields = ['text']
 
     def validate(self, attrs):
-        attrs['seller']=self.context['request'].user
-        attrs['post_id']=self.context['post_id']
+        attrs['seller'] = self.context['request'].user
+        attrs['post_id'] = self.context['post_id']
         return attrs
 
 
 class EditPostModelSerializer(ModelSerializer):
     class Meta:
-        model=Post
-        fields=['text','phone_number','price']
+        model = Post
+        fields = ['text', 'phone_number', 'price']
+
+
+class CreateCategoryModelSerializer(ModelSerializer):
+    email = CharField(write_only=True)
+
+    class Meta:
+        model = Category
+        fields = ["name", 'email']
+
+    def validate(self, attrs):
+        attrs.pop('email')
+        return attrs
+
+
+class CreateProductModelSerializer(ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['name', 'price']
+
+    def validate(self, attrs):
+        attrs['category_id'] = self.context.get('category_id')
+        return attrs
+
+class GetCategoriesModelSerializer(ModelSerializer):
+    class Meta:
+        model=Product
+        fields=['name','price','category']
+        depth=1

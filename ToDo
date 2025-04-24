@@ -17,9 +17,9 @@ endpoints:
 
     admin panel:
         POST api/v1login/
-        GET api/v1/get-categories/ Admin barcha category larni oladi
+        GET api/v1/get-categories/ Admin barcha category larni oladi ✅
         GET api/v1/get-products/{category_id}/ Admin aynan bir category ga tegishli productlarni oladi
-        POST api/v1/create-category/ Admin yangi categroy qo'sha oladi
+        POST api/v1/create-category/ Admin yangi categroy qo'sha oladi ✅
         POST api/v1/create-product/{category_id}/ Admin yangi product yaratib category ga biriktiradi
 
 

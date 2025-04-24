@@ -7,11 +7,12 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from apps.models import User, Post, Comment
-from apps.permissions import IsSellerPermission, IsCustomerPermission
+from apps.models import User, Post, Comment, Category, Product
+from apps.permissions import IsSellerPermission, IsCustomerPermission, IsAdminPermission
 from apps.serializers import RegisterModelSerializer, CustomTokenObtainPairSerializer, ProfileModelSerializer, \
     AllPostForUserModelSerializer, PostDetailModelSerializer, SellerCommentModelSerializer, PostCreateModelSerializer, \
-    CommentCreateModelSerializer, EditPostModelSerializer
+    CommentCreateModelSerializer, EditPostModelSerializer, CreateCategoryModelSerializer, CreateProductModelSerializer, \
+    GetCategoriesModelSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -89,18 +90,20 @@ class CommentCreateAPIView(CreateAPIView):
         context['post_id']=post.id
         return context
 
-
+@extend_schema(tags=['Customer'])
 class PostUpdateAPIView(UpdateAPIView):
     permission_classes = [IsCustomerPermission]
     serializer_class = EditPostModelSerializer
     queryset = Post.objects.all()
     lookup_field = 'pk'
 
+@extend_schema(tags=['Customer'])
 class PostDeleteAPIView(DestroyAPIView):
     permission_classes = [IsCustomerPermission]
     queryset = Post.objects.all()
     lookup_field = 'pk'
 
+@extend_schema(tags=['Seller'])
 class CommentDeleteAPIView(DestroyAPIView):
     permission_classes = [IsSellerPermission]
     queryset = Comment.objects.all()
@@ -110,3 +113,35 @@ class CommentDeleteAPIView(DestroyAPIView):
 class AllPostsForSellerAPIView(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = AllPostForUserModelSerializer
+
+@extend_schema(tags=['Admin'])
+class AdminLoginApiView(TokenObtainPairView):
+    permission_classes = [IsAdminPermission]
+
+@extend_schema(tags=['Admin'])
+class CategoryCreateAPIView(CreateAPIView):
+    permission_classes = [IsAdminPermission]
+    queryset = Category.objects.all()
+    serializer_class = CreateCategoryModelSerializer
+@extend_schema(tags=["Admin"])
+class GetCategoriesListAPIView(ListAPIView):
+    serializer_class = CreateCategoryModelSerializer
+    queryset = Category.objects.all()
+
+@extend_schema(tags=["Admin"])
+class CreateProductAPIView(CreateAPIView):
+    serializer_class = CreateProductModelSerializer
+    queryset = Product.objects.all()
+
+    def get_serializer_context(self):
+        context=super().get_serializer_context()
+        context['category_id']=self.kwargs.get('pk')
+        return context
+
+@extend_schema(tags=['Admin'])
+class GetProductListAPIView(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = GetCategoriesModelSerializer
+
+
+
