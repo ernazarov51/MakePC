@@ -38,14 +38,18 @@ class ProfileModelSerializer(ModelSerializer):
 
 
 class AllPostForUserModelSerializer(ModelSerializer):
+    user=SerializerMethodField()
     text = SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ['id', 'text', 'phone_number', 'price']
+        fields = ['id', 'text', 'phone_number', 'price','user']
 
     def get_text(self, obj):
         return obj.text[:100] if len(obj.text) >= 100 else obj.text
+
+    def get_user(self,obj):
+        return ProfileModelSerializer(obj.customer).data
 
 
 class SellerCommentSerializer(ModelSerializer):
