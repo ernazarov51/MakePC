@@ -62,8 +62,8 @@ class SellerCommentAPIView(ListAPIView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset.filter(seller=self.request.user)
-        return queryset
+        return queryset.filter(seller=self.request.user)
+
 
 
 @extend_schema(tags=['Customer'], request=PostCreateModelSerializer)
