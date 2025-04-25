@@ -17,7 +17,7 @@ urlpatterns=[
     path('delete-post/<int:pk>/',PostDeleteAPIView.as_view(),name='delete-post'),
     path('delete-comment/<int:pk>/',CommentDeleteAPIView.as_view(),name='delete-comment'),
     path('all-posts/',AllPostsForSellerAPIView.as_view(),name='all-posts'),
-    path('edit-comment/',EditCommentUpdateAPIView.as_view(),name='edit-comment'),
+    path('edit-comment/<int:pk>/',EditCommentUpdateAPIView.as_view(),name='edit-comment'),
 
 #      admin
     path('admin/login/',AdminLoginApiView.as_view(),name='admin-login'),
