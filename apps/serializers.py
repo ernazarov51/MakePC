@@ -145,3 +145,8 @@ class GetCategoriesModelSerializer(ModelSerializer):
         model=Product
         fields=['name','price','category']
         depth=1
+
+class CommentEditModelSerializer(ModelSerializer):
+    class Meta:
+        model=Comment
+        fields=['text']

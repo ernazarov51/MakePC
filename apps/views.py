@@ -12,7 +12,7 @@ from apps.permissions import IsSellerPermission, IsCustomerPermission, IsAdminPe
 from apps.serializers import RegisterModelSerializer, CustomTokenObtainPairSerializer, ProfileModelSerializer, \
     AllPostForUserModelSerializer, PostDetailModelSerializer, SellerCommentModelSerializer, PostCreateModelSerializer, \
     CommentCreateModelSerializer, EditPostModelSerializer, CreateCategoryModelSerializer, CreateProductModelSerializer, \
-    GetCategoriesModelSerializer
+    GetCategoriesModelSerializer, CommentEditModelSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -143,5 +143,9 @@ class GetProductListAPIView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = GetCategoriesModelSerializer
 
-
+@extend_schema(tags=['Seller'])
+class EditCommentUpdateAPIView(UpdateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentEditModelSerializer
+    lookup_field = 'pk'
 

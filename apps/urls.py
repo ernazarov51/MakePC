@@ -3,7 +3,7 @@ from django.urls import path
 from apps.views import RegisterCreateAPIView, user_profile_api_view, PostsListAPIView, PostDetailRetrieveAPIView, \
     SellerCommentAPIView, PostCreateAPIView, CommentCreateAPIView, PostUpdateAPIView, PostDeleteAPIView, \
     CommentDeleteAPIView, AllPostsForSellerAPIView, AdminLoginApiView, CategoryCreateAPIView, GetCategoriesListAPIView, \
-    CreateProductAPIView, GetProductListAPIView
+    CreateProductAPIView, GetProductListAPIView, EditCommentUpdateAPIView
 
 urlpatterns=[
     path('register/',RegisterCreateAPIView.as_view(),name='register'),
@@ -17,6 +17,7 @@ urlpatterns=[
     path('delete-post/<int:pk>/',PostDeleteAPIView.as_view(),name='delete-post'),
     path('delete-comment/<int:pk>/',CommentDeleteAPIView.as_view(),name='delete-comment'),
     path('all-posts/',AllPostsForSellerAPIView.as_view(),name='all-posts'),
+    path('edit-comment/',EditCommentUpdateAPIView.as_view(),name='edit-comment'),
 
 #      admin
     path('admin/login/',AdminLoginApiView.as_view(),name='admin-login'),
