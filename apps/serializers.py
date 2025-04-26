@@ -143,7 +143,7 @@ class CreateProductModelSerializer(ModelSerializer):
 class GetCategoriesModelSerializer(ModelSerializer):
     class Meta:
         model=Product
-        fields=['name','price','category']
+        fields=['id','name','price','category']
         depth=1
 
 class CommentEditModelSerializer(ModelSerializer):
