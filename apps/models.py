@@ -52,7 +52,7 @@ class User(AbstractUser):
     role=CharField(max_length=255,choices=Roles.choices)
 
 class Category(Model):
-    name=CharField(max_length=255)
+    name=CharField(max_length=255,unique=True)
 
 class Product(Model):
     category=ForeignKey('apps.Category',on_delete=CASCADE,related_name='products')
