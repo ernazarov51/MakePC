@@ -154,6 +154,9 @@ class GetProductListAPIView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = GetCategoriesModelSerializer
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(category_id=self.kwargs.get('pk'))
 
 @extend_schema(tags=['Seller'])
 class EditCommentUpdateAPIView(UpdateAPIView):
@@ -187,9 +190,8 @@ class ProductDestroyAPIView(DestroyAPIView):
     queryset = Product.objects.all()
     lookup_field = 'pk'
 
+
 @extend_schema(tags=['Admin'])
 class AllProductsListAPIView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = GetCategoriesModelSerializer
-
-
