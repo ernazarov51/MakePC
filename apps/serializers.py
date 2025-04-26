@@ -38,17 +38,17 @@ class ProfileModelSerializer(ModelSerializer):
 
 
 class AllPostForUserModelSerializer(ModelSerializer):
-    user=SerializerMethodField()
+    user = SerializerMethodField()
     text = SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ['id', 'text', 'phone_number', 'price','user']
+        fields = ['id', 'text', 'phone_number', 'price', 'user']
 
     def get_text(self, obj):
         return obj.text[:100] if len(obj.text) >= 100 else obj.text
 
-    def get_user(self,obj):
+    def get_user(self, obj):
         return ProfileModelSerializer(obj.customer).data
 
 
@@ -140,27 +140,31 @@ class CreateProductModelSerializer(ModelSerializer):
         attrs['category_id'] = self.context.get('category_id')
         return attrs
 
+
 class GetCategoriesModelSerializer(ModelSerializer):
     class Meta:
-        model=Product
-        fields=['id','name','price','category']
-        depth=1
+        model = Product
+        fields = ['id', 'name', 'price', 'category']
+        depth = 1
+
 
 class CommentEditModelSerializer(ModelSerializer):
     class Meta:
-        model=Comment
-        fields=['text']
+        model = Comment
+        fields = ['text']
+
 
 class CategoryUpdateModelSerializer(ModelSerializer):
     class Meta:
-        model=Category
-        fields=['name']
+        model = Category
+        fields = ['name']
+
 
 class ProductUpdateModelSerializer(ModelSerializer):
     class Meta:
-        model=Product
-        fields=['name','price']
+        model = Product
+        fields = ['name', 'price']
 
-        extra_kwargs={
-            'price':{'required':False}
+        extra_kwargs = {
+            'price': {'required': False}
         }
