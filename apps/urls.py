@@ -3,7 +3,8 @@ from django.urls import path
 from apps.views import RegisterCreateAPIView, user_profile_api_view, PostsListAPIView, PostDetailRetrieveAPIView, \
     SellerCommentAPIView, PostCreateAPIView, CommentCreateAPIView, PostUpdateAPIView, PostDeleteAPIView, \
     CommentDeleteAPIView, AllPostsForSellerAPIView, AdminLoginApiView, CategoryCreateAPIView, GetCategoriesListAPIView, \
-    CreateProductAPIView, GetProductListAPIView, EditCommentUpdateAPIView
+    CreateProductAPIView, GetProductListAPIView, EditCommentUpdateAPIView, CategoryUpdateAPIView, \
+    DeleteCategoryDestroyAPIView, ProductUpdateAPIView, ProductDestroyAPIView, AllProductsListAPIView
 
 urlpatterns=[
     path('register/',RegisterCreateAPIView.as_view(),name='register'),
@@ -22,7 +23,12 @@ urlpatterns=[
 #      admin
     path('admin/login/',AdminLoginApiView.as_view(),name='admin-login'),
     path('create-category/',CategoryCreateAPIView.as_view(),name='create-category'),
+    path('edit-category/<int:pk>/',CategoryUpdateAPIView.as_view(),name='edit-category'),
+    path('delete-category/<int:pk>/',DeleteCategoryDestroyAPIView.as_view(),name='delete-category'),
     path('all-categories/',GetCategoriesListAPIView.as_view(),name='all-categories'),
     path('create-product/<int:pk>/',CreateProductAPIView.as_view(),name='create-product'),
+    path('edit-product/<int:pk>/',ProductUpdateAPIView.as_view(),name='edit-product'),
+    path('delete-product/<int:pk>/',ProductDestroyAPIView.as_view(),name='delete-product'),
     path('admin-product/<int:pk>/',GetProductListAPIView.as_view(),name='products'),
+    path('all-products/',AllProductsListAPIView.as_view(),name='all-products'),
 ]

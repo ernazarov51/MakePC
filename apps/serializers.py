@@ -150,3 +150,13 @@ class CommentEditModelSerializer(ModelSerializer):
     class Meta:
         model=Comment
         fields=['text']
+
+class CategoryUpdateModelSerializer(ModelSerializer):
+    class Meta:
+        model=Category
+        fields=['name']
+
+class ProductUpdateModelSerializer(ModelSerializer):
+    class Meta:
+        model=Product
+        fields=['name','price']
