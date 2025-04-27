@@ -166,5 +166,6 @@ class ProductUpdateModelSerializer(ModelSerializer):
         fields = ['name', 'price', 'category']
 
         extra_kwargs = {
-            'price': {'required': False}
+            'price': {'required': False},
+            'name': {'required': False}
         }
