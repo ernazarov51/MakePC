@@ -182,7 +182,7 @@ class AllCategoryAllProductModelSerializer(ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['id', 'name']
+        fields = ['id', 'name','products']
 
     def get_products(self, obj):
         return ProductModelSerializer(obj.products, many=True).data
