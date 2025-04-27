@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework.fields import SerializerMethodField, CharField
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from apps.models import User, Post, Comment, Category, Product
@@ -169,3 +169,20 @@ class ProductUpdateModelSerializer(ModelSerializer):
             'price': {'required': False},
             'name': {'required': False}
         }
+
+
+class ProductModelSerializer(ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'price']
+
+
+class AllCategoryAllProductModelSerializer(ModelSerializer):
+    products = SerializerMethodField()
+
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
+
+    def get_products(self, obj):
+        return ProductModelSerializer(obj.products, many=True).data

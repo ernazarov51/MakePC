@@ -13,7 +13,7 @@ from apps.serializers import RegisterModelSerializer, CustomTokenObtainPairSeria
     AllPostForUserModelSerializer, PostDetailModelSerializer, SellerCommentModelSerializer, PostCreateModelSerializer, \
     CommentCreateModelSerializer, EditPostModelSerializer, CreateCategoryModelSerializer, CreateProductModelSerializer, \
     GetCategoriesModelSerializer, CommentEditModelSerializer, CategoryUpdateModelSerializer, \
-    ProductUpdateModelSerializer
+    ProductUpdateModelSerializer, AllCategoryAllProductModelSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -195,3 +195,9 @@ class ProductDestroyAPIView(DestroyAPIView):
 class AllProductsListAPIView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = GetCategoriesModelSerializer
+
+
+@extend_schema(tags=['Customer'])
+class AllCategoryProductListAPIView(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = AllCategoryAllProductModelSerializer

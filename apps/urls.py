@@ -4,7 +4,8 @@ from apps.views import RegisterCreateAPIView, user_profile_api_view, PostsListAP
     SellerCommentAPIView, PostCreateAPIView, CommentCreateAPIView, PostUpdateAPIView, PostDeleteAPIView, \
     CommentDeleteAPIView, AllPostsForSellerAPIView, AdminLoginApiView, CategoryCreateAPIView, GetCategoriesListAPIView, \
     CreateProductAPIView, GetProductListAPIView, EditCommentUpdateAPIView, CategoryUpdateAPIView, \
-    DeleteCategoryDestroyAPIView, ProductUpdateAPIView, ProductDestroyAPIView, AllProductsListAPIView
+    DeleteCategoryDestroyAPIView, ProductUpdateAPIView, ProductDestroyAPIView, AllProductsListAPIView, \
+    AllCategoryProductListAPIView
 
 urlpatterns=[
     path('register/',RegisterCreateAPIView.as_view(),name='register'),
@@ -31,4 +32,6 @@ urlpatterns=[
     path('delete-product/<int:pk>/',ProductDestroyAPIView.as_view(),name='delete-product'),
     path('admin-product/<int:pk>/',GetProductListAPIView.as_view(),name='products'),
     path('all-products/',AllProductsListAPIView.as_view(),name='all-products'),
+
+    path('all-products-categories/',AllCategoryProductListAPIView.as_view(),name='all-products-categories'),
 ]
