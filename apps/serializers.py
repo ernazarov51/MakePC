@@ -124,7 +124,7 @@ class CreateCategoryModelSerializer(ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ["name", 'email']
+        fields = ['id',"name", 'email']
 
     def validate(self, attrs):
         attrs.pop('email')
