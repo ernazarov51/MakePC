@@ -124,7 +124,7 @@ class CreateCategoryModelSerializer(ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['id',"name", 'email']
+        fields = ['id', "name", 'email']
 
     def validate(self, attrs):
         attrs.pop('email')
@@ -163,7 +163,7 @@ class CategoryUpdateModelSerializer(ModelSerializer):
 class ProductUpdateModelSerializer(ModelSerializer):
     class Meta:
         model = Product
-        fields = ['name', 'price']
+        fields = ['name', 'price', 'category_id']
 
         extra_kwargs = {
             'price': {'required': False}
