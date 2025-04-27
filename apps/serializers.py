@@ -163,7 +163,7 @@ class CategoryUpdateModelSerializer(ModelSerializer):
 class ProductUpdateModelSerializer(ModelSerializer):
     class Meta:
         model = Product
-        fields = ['name', 'price', 'category_id']
+        fields = ['name', 'price', 'category']
 
         extra_kwargs = {
             'price': {'required': False}
