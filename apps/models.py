@@ -8,7 +8,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.db.models import EmailField, CharField, BooleanField, DateField, ImageField, Model, ForeignKey, CASCADE, \
-    DecimalField, TextField
+    DecimalField, TextField, TextChoices, SmallIntegerField
 
 
 class CustomUserManager(UserManager):
@@ -49,24 +49,74 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
     email = EmailField("email address", unique=True)
-    role=CharField(max_length=255,choices=Roles.choices)
+    role = CharField(max_length=255, choices=Roles.choices)
+
 
 class Category(Model):
-    name=CharField(max_length=255,unique=True)
+    class CategoryChoices(TextChoices):
+        gaming = 'gaming', 'GAMING'
+        office = 'office', 'OFFICE'
+        montage = 'montage', 'MONTAGE'
 
-class Product(Model):
-    category=ForeignKey('apps.Category',on_delete=CASCADE,related_name='products')
+    name = CharField(max_length=255, choices=CategoryChoices.choices)
+
+    def __str__(self):
+        return self.name
+
+
+class Soket(Model):
     name=CharField(max_length=255)
-    price=DecimalField(max_digits=10, decimal_places=2)
+    def __str__(self):
+        return self.name
+
+class CPU(Model):
+    name=CharField(max_length=255)
+    price=DecimalField(max_digits=10,decimal_places=2)
+    soket=ForeignKey('apps.Soket',CASCADE,related_name='cpus')
+    power=SmallIntegerField()
+    category=ForeignKey('apps.Category',CASCADE,related_name='cpus')
+
+    def __str__(self):
+        return self.name
+
+class MotherBoard(Model):
+    name=CharField(max_length=255)
+    price=DecimalField(max_digits=10,decimal_places=2)
+    soket=ForeignKey('apps.Soket',CASCADE,related_name='motherboards')
+
+    def __str__(self):
+        return self.name
+
+class Other(Model):
+    class TypeChoices(TextChoices):
+        ssd='ssd','SSD'
+        hdd='hdd','HDD'
+        vide_card='video_card','Video Card'
+    name=CharField(max_length=255)
+    price=DecimalField(max_digits=10,decimal_places=2)
+    power=SmallIntegerField(null=True,blank=True)
+    category=ForeignKey('apps.Category',CASCADE,related_name='others',null=True,blank=True)
+    type=CharField(max_length=255,choices=TypeChoices.choices)
+
+    def __str__(self):
+        return self.name
+
+class PowerUnit(Model):
+    name=CharField(max_length=255)
+    power=SmallIntegerField()
+    price=SmallIntegerField()
+
+    def __str__(self):
+        return self.name
 
 class Post(Model):
-    text=TextField()
-    price=DecimalField(max_digits=10, decimal_places=2)
-    phone_number=CharField(max_length=20)
-    customer=ForeignKey('apps.User',on_delete=CASCADE,related_name='posts')
+    text = TextField()
+    price = DecimalField(max_digits=10, decimal_places=2)
+    phone_number = CharField(max_length=20)
+    customer = ForeignKey('apps.User', on_delete=CASCADE, related_name='posts')
+
 
 class Comment(Model):
-    text=TextField()
-    post=ForeignKey('apps.Post',on_delete=CASCADE,related_name='comments')
-    seller=ForeignKey('apps.User',on_delete=CASCADE,related_name='comments')
-
+    text = TextField()
+    post = ForeignKey('apps.Post', on_delete=CASCADE, related_name='comments')
+    seller = ForeignKey('apps.User', on_delete=CASCADE, related_name='comments')

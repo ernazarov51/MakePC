@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
@@ -7,13 +8,13 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from apps.models import User, Post, Comment, Category, Product
+from apps.models import User, Post, Comment, Category, CPU, MotherBoard, Other, PowerUnit
 from apps.permissions import IsSellerPermission, IsCustomerPermission, IsAdminPermission
 from apps.serializers import RegisterModelSerializer, CustomTokenObtainPairSerializer, ProfileModelSerializer, \
     AllPostForUserModelSerializer, PostDetailModelSerializer, SellerCommentModelSerializer, PostCreateModelSerializer, \
-    CommentCreateModelSerializer, EditPostModelSerializer, CreateCategoryModelSerializer, CreateProductModelSerializer, \
-    GetCategoriesModelSerializer, CommentEditModelSerializer, CategoryUpdateModelSerializer, \
-    ProductUpdateModelSerializer, AllCategoryAllProductModelSerializer
+    CommentCreateModelSerializer, EditPostModelSerializer, CreateCategoryModelSerializer, \
+    CommentEditModelSerializer, CategoryUpdateModelSerializer, CPUModelSerializer, MotherBoardModelSerializer, \
+    OtherModelSerializer, PowerUnitModelSerializer, PowerUnitPostSerializer, CPUCreateModelSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -138,25 +139,25 @@ class GetCategoriesListAPIView(ListAPIView):
     queryset = Category.objects.all()
 
 
-@extend_schema(tags=["Admin"])
-class CreateProductAPIView(CreateAPIView):
-    serializer_class = CreateProductModelSerializer
-    queryset = Product.objects.all()
-
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context['category_id'] = self.kwargs.get('pk')
-        return context
-
-
-@extend_schema(tags=['Admin'])
-class GetProductListAPIView(ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = GetCategoriesModelSerializer
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(category_id=self.kwargs.get('pk'))
+# @extend_schema(tags=["Admin"])
+# class CreateProductAPIView(CreateAPIView):
+#     serializer_class = CreateProductModelSerializer
+#     queryset = Product.objects.all()
+#
+#     def get_serializer_context(self):
+#         context = super().get_serializer_context()
+#         context['category_id'] = self.kwargs.get('pk')
+#         return context
+#
+#
+# @extend_schema(tags=['Admin'])
+# class GetProductListAPIView(ListAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = GetCategoriesModelSerializer
+#
+#     def get_queryset(self):
+#         queryset = super().get_queryset()
+#         return queryset.filter(category_id=self.kwargs.get('pk'))
 
 @extend_schema(tags=['Seller'])
 class EditCommentUpdateAPIView(UpdateAPIView):
@@ -178,26 +179,85 @@ class DeleteCategoryDestroyAPIView(DestroyAPIView):
     lookup_field = 'pk'
 
 
-@extend_schema(tags=['Admin'])
-class ProductUpdateAPIView(UpdateAPIView):
-    serializer_class = ProductUpdateModelSerializer
-    queryset = Product.objects.all()
+# @extend_schema(tags=['Admin'])
+# class ProductUpdateAPIView(UpdateAPIView):
+#     serializer_class = ProductUpdateModelSerializer
+#     queryset = Product.objects.all()
+#     lookup_field = 'pk'
+#
+#
+# @extend_schema(tags=['Admin'])
+# class ProductDestroyAPIView(DestroyAPIView):
+#     queryset = Product.objects.all()
+#     lookup_field = 'pk'
+#
+#
+# @extend_schema(tags=['Admin'])
+# class AllProductsListAPIView(ListAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = GetCategoriesModelSerializer
+
+
+# @extend_schema(tags=['Customer'])
+# class AllCategoryProductListAPIView(ListAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = AllCategoryAllProductModelSerializer
+
+@extend_schema(tags=['Customer Last Updates'])
+class CPUListAPIView(ListAPIView):
+    queryset = CPU.objects.all()
+    serializer_class = CPUModelSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        category = Category.objects.filter(id=self.kwargs['category_id']).first()
+        return category.cpus
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class MotherBoardListAPIView(ListAPIView):
+    queryset = MotherBoard.objects.all()
+    serializer_class = MotherBoardModelSerializer
+
+    def get_queryset(self):
+        cpu = CPU.objects.filter(id=self.kwargs['cpu_id']).first()
+        soket = cpu.soket
+        return super().get_queryset().filter(soket=soket)
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class OtherListAPIView(ListAPIView):
+    queryset = Other.objects.all()
+    serializer_class = OtherModelSerializer
+
+    def get_queryset(self):
+        others = Other.objects.filter(
+            Q(type=Other.TypeChoices.vide_card, category_id=self.kwargs['category_id']) |
+            Q(type__in=[Other.TypeChoices.hdd, Other.TypeChoices.ssd])
+        )
+        return others
+
+@extend_schema(tags=['Customer Last Updates'],request=PowerUnitPostSerializer)
+@api_view(['POST'])
+def power_unit_api_view(request):
+    cpu_power=request.data['cpu_power']
+    videocard_power=request.data['videocard_power']
+
+    overall=cpu_power+videocard_power
+    power_units=PowerUnit.objects.filter(power__gte=overall)
+    if power_units:
+        return Response(PowerUnitModelSerializer(power_units,many=True).data)
+    return Response('Power Units not found')
+
+
+@extend_schema(tags=['Admin Last Updates'])
+class CPUAddCreateAPIView(CreateAPIView):
+    serializer_class = CPUCreateModelSerializer
+
+
+
+@extend_schema(tags=['Admin Last Updates'])
+class CPUUpdateAPIView(UpdateAPIView):
+    queryset = CPU.objects.all()
     lookup_field = 'pk'
-
-
-@extend_schema(tags=['Admin'])
-class ProductDestroyAPIView(DestroyAPIView):
-    queryset = Product.objects.all()
-    lookup_field = 'pk'
-
-
-@extend_schema(tags=['Admin'])
-class AllProductsListAPIView(ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = GetCategoriesModelSerializer
-
-
-@extend_schema(tags=['Customer'])
-class AllCategoryProductListAPIView(ListAPIView):
-    queryset = Category.objects.all()
-    serializer_class = AllCategoryAllProductModelSerializer
+    serializer_class = CPUAddCreateAPIView

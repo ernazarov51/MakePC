@@ -1,9 +1,9 @@
 from django.contrib.auth.hashers import make_password
-from rest_framework.fields import SerializerMethodField, CharField
+from rest_framework.fields import SerializerMethodField, CharField, IntegerField
 from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from apps.models import User, Post, Comment, Category, Product
+from apps.models import User, Post, Comment, Category, CPU, MotherBoard, Other, PowerUnit
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -131,21 +131,21 @@ class CreateCategoryModelSerializer(ModelSerializer):
         return attrs
 
 
-class CreateProductModelSerializer(ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['name', 'price']
-
-    def validate(self, attrs):
-        attrs['category_id'] = self.context.get('category_id')
-        return attrs
-
-
-class GetCategoriesModelSerializer(ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['id', 'name', 'price', 'category']
-        depth = 1
+# class CreateProductModelSerializer(ModelSerializer):
+#     class Meta:
+#         model = Product
+#         fields = ['name', 'price']
+#
+#     def validate(self, attrs):
+#         attrs['category_id'] = self.context.get('category_id')
+#         return attrs
+#
+#
+# class GetCategoriesModelSerializer(ModelSerializer):
+#     class Meta:
+#         model = Product
+#         fields = ['id', 'name', 'price', 'category']
+#         depth = 1
 
 
 class CommentEditModelSerializer(ModelSerializer):
@@ -160,29 +160,68 @@ class CategoryUpdateModelSerializer(ModelSerializer):
         fields = ['name']
 
 
-class ProductUpdateModelSerializer(ModelSerializer):
+# class ProductUpdateModelSerializer(ModelSerializer):
+#     class Meta:
+#         model = Product
+#         fields = ['name', 'price', 'category']
+#
+#         extra_kwargs = {
+#             'price': {'required': False},
+#             'name': {'required': False}
+#         }
+#
+#
+# class ProductModelSerializer(ModelSerializer):
+#     class Meta:
+#         model = Product
+#         fields = ['id', 'name', 'price']
+
+
+# class AllCategoryAllProductModelSerializer(ModelSerializer):
+#     products = SerializerMethodField()
+#
+#     class Meta:
+#         model = Category
+#         fields = ['id', 'name','products']
+#
+#     def get_products(self, obj):
+#         return ProductModelSerializer(obj.products, many=True).data
+
+class CPUModelSerializer(ModelSerializer):
     class Meta:
-        model = Product
-        fields = ['name', 'price', 'category']
-
-        extra_kwargs = {
-            'price': {'required': False},
-            'name': {'required': False}
-        }
+        model = CPU
+        fields = 'id', 'name', 'price', 'power'
 
 
-class ProductModelSerializer(ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['id', 'name', 'price']
-
-
-class AllCategoryAllProductModelSerializer(ModelSerializer):
-    products = SerializerMethodField()
+class MotherBoardModelSerializer(ModelSerializer):
+    soket_name = SerializerMethodField()
 
     class Meta:
-        model = Category
-        fields = ['id', 'name','products']
+        model = MotherBoard
+        fields = ['id', 'name', 'price', 'soket_name']
 
-    def get_products(self, obj):
-        return ProductModelSerializer(obj.products, many=True).data
+    def get_soket_name(self, obj):
+        return obj.soket.name
+
+
+class OtherModelSerializer(ModelSerializer):
+    class Meta:
+        model = Other
+        fields = '__all__'
+
+
+class PowerUnitModelSerializer(ModelSerializer):
+    class Meta:
+        model = PowerUnit
+        fields = '__all__'
+
+
+class PowerUnitPostSerializer(Serializer):
+    cpu_power = IntegerField()
+    videocard_power = IntegerField()
+
+
+class CPUCreateModelSerializer(ModelSerializer):
+    class Meta:
+        model = CPU
+        fields = '__all__'
