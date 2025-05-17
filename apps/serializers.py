@@ -3,7 +3,7 @@ from rest_framework.fields import SerializerMethodField, CharField, IntegerField
 from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from apps.models import User, Post, Comment, Category, CPU, MotherBoard, Other, PowerUnit
+from apps.models import User, Post, Comment, Category, CPU, MotherBoard, Other, PowerUnit, Soket
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -190,7 +190,7 @@ class CategoryUpdateModelSerializer(ModelSerializer):
 class CPUModelSerializer(ModelSerializer):
     class Meta:
         model = CPU
-        fields = 'id', 'name', 'price', 'power'
+        fields = 'id', 'name', 'price', 'power','soket'
 
 
 class MotherBoardModelSerializer(ModelSerializer):
@@ -224,4 +224,16 @@ class PowerUnitPostSerializer(Serializer):
 class CPUCreateModelSerializer(ModelSerializer):
     class Meta:
         model = CPU
+        fields = '__all__'
+
+
+class MotherBoardViewSetModelSerializer(ModelSerializer):
+    class Meta:
+        model = MotherBoard
+        fields = '__all__'
+
+
+class SoketSerializer(ModelSerializer):
+    class Meta:
+        model = Soket
         fields = '__all__'

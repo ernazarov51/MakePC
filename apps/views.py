@@ -6,15 +6,17 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, ListAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from apps.models import User, Post, Comment, Category, CPU, MotherBoard, Other, PowerUnit
+from apps.models import User, Post, Comment, Category, CPU, MotherBoard, Other, PowerUnit, Soket
 from apps.permissions import IsSellerPermission, IsCustomerPermission, IsAdminPermission
 from apps.serializers import RegisterModelSerializer, CustomTokenObtainPairSerializer, ProfileModelSerializer, \
     AllPostForUserModelSerializer, PostDetailModelSerializer, SellerCommentModelSerializer, PostCreateModelSerializer, \
     CommentCreateModelSerializer, EditPostModelSerializer, CreateCategoryModelSerializer, \
     CommentEditModelSerializer, CategoryUpdateModelSerializer, CPUModelSerializer, MotherBoardModelSerializer, \
-    OtherModelSerializer, PowerUnitModelSerializer, PowerUnitPostSerializer, CPUCreateModelSerializer
+    OtherModelSerializer, PowerUnitModelSerializer, PowerUnitPostSerializer, CPUCreateModelSerializer, \
+    MotherBoardViewSetModelSerializer, SoketSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -260,4 +262,38 @@ class CPUAddCreateAPIView(CreateAPIView):
 class CPUUpdateAPIView(UpdateAPIView):
     queryset = CPU.objects.all()
     lookup_field = 'pk'
-    serializer_class = CPUAddCreateAPIView
+    serializer_class = CPUCreateModelSerializer
+
+
+@extend_schema(tags=['Admin Last Updates'])
+class CPUDestroyAPIView(DestroyAPIView):
+    queryset = CPU.objects.all()
+    lookup_field = 'pk'
+
+
+@extend_schema(tags=['Admin Last Updates'])
+class MotherBoardViewSet(ModelViewSet):
+    queryset = MotherBoard.objects.all()
+    serializer_class = MotherBoardViewSetModelSerializer
+
+
+@extend_schema(tags=['Admin Last Updates'])
+class SoketViewSet(ModelViewSet):
+    queryset = Soket.objects.all()
+    serializer_class = SoketSerializer
+
+
+@extend_schema(tags=['Admin Last Updates'])
+class OtherViewSet(ModelViewSet):
+    queryset = Other.objects.all()
+    serializer_class = OtherModelSerializer
+
+@extend_schema(tags=['Admin Last Updates'])
+class PowerUnitViewSet(ModelViewSet):
+    queryset = PowerUnit.objects.all()
+    serializer_class = PowerUnitModelSerializer
+
+@extend_schema(tags=['Admin Last Updates'])
+class CPUModelViewSet(ModelViewSet):
+    queryset = CPU.objects.all()
+    serializer_class = CPUCreateModelSerializer
