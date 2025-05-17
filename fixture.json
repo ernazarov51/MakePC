@@ -24,108 +24,755 @@
     "model": "apps.soket",
     "pk": 1,
     "fields": {
-      "name": "LGA1200"
+      "name": "Socket Ohb"
     }
   },
   {
     "model": "apps.soket",
     "pk": 2,
     "fields": {
-      "name": "AM4"
+      "name": "Socket Vrp"
     }
   },
   {
-    "model": "apps.type",
-    "pk": 1,
+    "model": "apps.soket",
+    "pk": 3,
     "fields": {
-      "name": "SSD"
+      "name": "Socket oiV"
     }
   },
   {
-    "model": "apps.type",
-    "pk": 2,
+    "model": "apps.soket",
+    "pk": 4,
     "fields": {
-      "name": "HDD"
+      "name": "Socket gRV"
+    }
+  },
+  {
+    "model": "apps.soket",
+    "pk": 5,
+    "fields": {
+      "name": "Socket IfL"
     }
   },
   {
     "model": "apps.cpu",
     "pk": 1,
     "fields": {
-      "name": "Intel i5 10400",
-      "price": "150.00",
+      "name": "Allen Robinson CPU",
+      "price": "617.90",
+      "soket": 3,
+      "power": 82,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 2,
+    "fields": {
+      "name": "Michelle Miles CPU",
+      "price": "529.37",
       "soket": 1,
-      "power": 65,
-      "category": 1
+      "power": 75,
+      "category": 3
     }
   },
   {
     "model": "apps.cpu",
-    "pk": 2,
+    "pk": 3,
     "fields": {
-      "name": "AMD Ryzen 5 3600",
-      "price": "180.00",
-      "soket": 2,
+      "name": "Rhonda Smith CPU",
+      "price": "925.26",
+      "soket": 5,
+      "power": 111,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 4,
+    "fields": {
+      "name": "Christopher Bernard CPU",
+      "price": "444.11",
+      "soket": 3,
+      "power": 72,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 5,
+    "fields": {
+      "name": "Ian Cooper CPU",
+      "price": "370.07",
+      "soket": 4,
       "power": 65,
       "category": 2
     }
   },
   {
+    "model": "apps.cpu",
+    "pk": 6,
+    "fields": {
+      "name": "Valerie Gray CPU",
+      "price": "665.49",
+      "soket": 1,
+      "power": 124,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 7,
+    "fields": {
+      "name": "Heidi Lee CPU",
+      "price": "171.03",
+      "soket": 2,
+      "power": 103,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 8,
+    "fields": {
+      "name": "Victoria Wyatt CPU",
+      "price": "987.16",
+      "soket": 5,
+      "power": 46,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 9,
+    "fields": {
+      "name": "Mark Diaz CPU",
+      "price": "479.53",
+      "soket": 5,
+      "power": 110,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 10,
+    "fields": {
+      "name": "Mia Sutton CPU",
+      "price": "173.92",
+      "soket": 2,
+      "power": 69,
+      "category": 2
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 11,
+    "fields": {
+      "name": "Danielle Ford CPU",
+      "price": "376.83",
+      "soket": 3,
+      "power": 50,
+      "category": 2
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 12,
+    "fields": {
+      "name": "Sarah Parsons CPU",
+      "price": "334.05",
+      "soket": 4,
+      "power": 121,
+      "category": 2
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 13,
+    "fields": {
+      "name": "Austin Gentry CPU",
+      "price": "680.53",
+      "soket": 3,
+      "power": 95,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 14,
+    "fields": {
+      "name": "Jennifer Rocha CPU",
+      "price": "569.24",
+      "soket": 5,
+      "power": 99,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 15,
+    "fields": {
+      "name": "Patrick Ryan CPU",
+      "price": "864.96",
+      "soket": 2,
+      "power": 103,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 16,
+    "fields": {
+      "name": "Jennifer Robinson CPU",
+      "price": "241.87",
+      "soket": 4,
+      "power": 99,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 17,
+    "fields": {
+      "name": "Anthony Rodriguez CPU",
+      "price": "742.26",
+      "soket": 2,
+      "power": 99,
+      "category": 2
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 18,
+    "fields": {
+      "name": "Janice Carlson CPU",
+      "price": "579.84",
+      "soket": 5,
+      "power": 73,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 19,
+    "fields": {
+      "name": "Shannon Smith CPU",
+      "price": "838.18",
+      "soket": 5,
+      "power": 119,
+      "category": 2
+    }
+  },
+  {
+    "model": "apps.cpu",
+    "pk": 20,
+    "fields": {
+      "name": "Patricia Peterson CPU",
+      "price": "400.62",
+      "soket": 3,
+      "power": 52,
+      "category": 3
+    }
+  },
+  {
     "model": "apps.motherboard",
     "pk": 1,
     "fields": {
-      "name": "MSI B460M",
-      "price": "100.00",
-      "soket": 1
+      "name": "Smith-Bowen Motherboard",
+      "price": "836.48",
+      "soket": 3
     }
   },
   {
     "model": "apps.motherboard",
     "pk": 2,
     "fields": {
-      "name": "ASUS TUF B550",
-      "price": "120.00",
+      "name": "Romero Inc Motherboard",
+      "price": "991.48",
+      "soket": 4
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 3,
+    "fields": {
+      "name": "Gonzalez, Brooks and Martin Motherboard",
+      "price": "897.80",
+      "soket": 3
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 4,
+    "fields": {
+      "name": "Nguyen, Smith and Hickman Motherboard",
+      "price": "999.43",
+      "soket": 4
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 5,
+    "fields": {
+      "name": "Allen PLC Motherboard",
+      "price": "180.17",
+      "soket": 5
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 6,
+    "fields": {
+      "name": "Spence PLC Motherboard",
+      "price": "884.22",
+      "soket": 3
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 7,
+    "fields": {
+      "name": "Alvarez, Pierce and Baker Motherboard",
+      "price": "993.96",
+      "soket": 5
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 8,
+    "fields": {
+      "name": "Hickman Ltd Motherboard",
+      "price": "806.34",
       "soket": 2
     }
   },
   {
+    "model": "apps.motherboard",
+    "pk": 9,
+    "fields": {
+      "name": "Carney-Santos Motherboard",
+      "price": "548.87",
+      "soket": 2
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 10,
+    "fields": {
+      "name": "Wright Inc Motherboard",
+      "price": "446.09",
+      "soket": 2
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 11,
+    "fields": {
+      "name": "Hall, Robinson and Jones Motherboard",
+      "price": "746.03",
+      "soket": 4
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 12,
+    "fields": {
+      "name": "Whitehead LLC Motherboard",
+      "price": "172.83",
+      "soket": 2
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 13,
+    "fields": {
+      "name": "Caldwell-Lewis Motherboard",
+      "price": "235.99",
+      "soket": 5
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 14,
+    "fields": {
+      "name": "Sanchez-Kennedy Motherboard",
+      "price": "516.31",
+      "soket": 3
+    }
+  },
+  {
+    "model": "apps.motherboard",
+    "pk": 15,
+    "fields": {
+      "name": "Hopkins LLC Motherboard",
+      "price": "533.67",
+      "soket": 3
+    }
+  },
+  {
     "model": "apps.other",
     "pk": 1,
     "fields": {
-      "name": "Kingston SSD 240GB",
-      "price": "35.00",
-      "power": 5,
+      "name": "Treat NVMe",
+      "price": "846.01",
+      "power": 25,
       "category": 1,
-      "type": 1
+      "type": "Cooler"
     }
   },
   {
     "model": "apps.other",
     "pk": 2,
     "fields": {
-      "name": "WD HDD 1TB",
-      "price": "45.00",
-      "power": 6,
+      "name": "Ask RAM",
+      "price": "512.51",
+      "power": 5,
+      "category": 3,
+      "type": "RAM"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 3,
+    "fields": {
+      "name": "Energy NVMe",
+      "price": "296.38",
+      "power": 16,
+      "category": 3,
+      "type": "Cooler"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 4,
+    "fields": {
+      "name": "List SSD",
+      "price": "243.62",
+      "power": 24,
+      "category": 3,
+      "type": "NVMe"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 5,
+    "fields": {
+      "name": "Family SSD",
+      "price": "573.31",
+      "power": 7,
+      "category": 1,
+      "type": "SSD"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 6,
+    "fields": {
+      "name": "Level NVMe",
+      "price": "927.81",
+      "power": 20,
+      "category": 1,
+      "type": "RAM"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 7,
+    "fields": {
+      "name": "Apply Cooler",
+      "price": "767.80",
+      "power": 10,
+      "category": 3,
+      "type": "RAM"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 8,
+    "fields": {
+      "name": "Better NVMe",
+      "price": "871.32",
+      "power": 19,
+      "category": 3,
+      "type": "SSD"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 9,
+    "fields": {
+      "name": "Investment RAM",
+      "price": "597.73",
+      "power": 12,
       "category": 2,
-      "type": 2
+      "type": "RAM"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 10,
+    "fields": {
+      "name": "Treatment HDD",
+      "price": "510.02",
+      "power": 6,
+      "category": 1,
+      "type": "NVMe"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 11,
+    "fields": {
+      "name": "Hundred Cooler",
+      "price": "102.64",
+      "power": 24,
+      "category": 1,
+      "type": "RAM"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 12,
+    "fields": {
+      "name": "With SSD",
+      "price": "902.74",
+      "power": 21,
+      "category": 1,
+      "type": "Cooler"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 13,
+    "fields": {
+      "name": "Land HDD",
+      "price": "813.87",
+      "power": 21,
+      "category": 2,
+      "type": "HDD"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 14,
+    "fields": {
+      "name": "Clear Cooler",
+      "price": "294.43",
+      "power": 5,
+      "category": 3,
+      "type": "Cooler"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 15,
+    "fields": {
+      "name": "Article RAM",
+      "price": "693.80",
+      "power": 12,
+      "category": 3,
+      "type": "Cooler"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 16,
+    "fields": {
+      "name": "Small SSD",
+      "price": "421.00",
+      "power": 24,
+      "category": 2,
+      "type": "SSD"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 17,
+    "fields": {
+      "name": "Pattern NVMe",
+      "price": "588.88",
+      "power": 16,
+      "category": 3,
+      "type": "NVMe"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 18,
+    "fields": {
+      "name": "Coach NVMe",
+      "price": "158.81",
+      "power": 14,
+      "category": 2,
+      "type": "RAM"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 19,
+    "fields": {
+      "name": "Today RAM",
+      "price": "290.19",
+      "power": 10,
+      "category": 2,
+      "type": "Cooler"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 20,
+    "fields": {
+      "name": "Author Cooler",
+      "price": "791.36",
+      "power": 11,
+      "category": 2,
+      "type": "NVMe"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 21,
+    "fields": {
+      "name": "Call HDD",
+      "price": "683.39",
+      "power": 19,
+      "category": 2,
+      "type": "NVMe"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 22,
+    "fields": {
+      "name": "Phone Cooler",
+      "price": "140.91",
+      "power": 24,
+      "category": 1,
+      "type": "Cooler"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 23,
+    "fields": {
+      "name": "Kind RAM",
+      "price": "773.99",
+      "power": 7,
+      "category": 2,
+      "type": "HDD"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 24,
+    "fields": {
+      "name": "Necessary SSD",
+      "price": "423.43",
+      "power": 21,
+      "category": 1,
+      "type": "HDD"
+    }
+  },
+  {
+    "model": "apps.other",
+    "pk": 25,
+    "fields": {
+      "name": "Relationship SSD",
+      "price": "833.53",
+      "power": 10,
+      "category": 2,
+      "type": "Cooler"
     }
   },
   {
     "model": "apps.powerunit",
     "pk": 1,
     "fields": {
-      "name": "Corsair 550W",
-      "power": 550,
-      "price": 70
+      "name": "Foster-Powers Power Unit",
+      "power": 483,
+      "price": 95
     }
   },
   {
     "model": "apps.powerunit",
     "pk": 2,
     "fields": {
-      "name": "Cooler Master 650W",
-      "power": 650,
-      "price": 90
+      "name": "Bryant-Hickman Power Unit",
+      "power": 833,
+      "price": 93
+    }
+  },
+  {
+    "model": "apps.powerunit",
+    "pk": 3,
+    "fields": {
+      "name": "Smith PLC Power Unit",
+      "power": 484,
+      "price": 103
+    }
+  },
+  {
+    "model": "apps.powerunit",
+    "pk": 4,
+    "fields": {
+      "name": "Ferrell, Jones and Lewis Power Unit",
+      "power": 668,
+      "price": 42
+    }
+  },
+  {
+    "model": "apps.powerunit",
+    "pk": 5,
+    "fields": {
+      "name": "Anderson-Bailey Power Unit",
+      "power": 605,
+      "price": 110
+    }
+  },
+  {
+    "model": "apps.powerunit",
+    "pk": 6,
+    "fields": {
+      "name": "Suarez LLC Power Unit",
+      "power": 418,
+      "price": 77
+    }
+  },
+  {
+    "model": "apps.powerunit",
+    "pk": 7,
+    "fields": {
+      "name": "Moore-Bass Power Unit",
+      "power": 819,
+      "price": 117
+    }
+  },
+  {
+    "model": "apps.powerunit",
+    "pk": 8,
+    "fields": {
+      "name": "Turner, Riggs and Roman Power Unit",
+      "power": 841,
+      "price": 104
+    }
+  },
+  {
+    "model": "apps.powerunit",
+    "pk": 9,
+    "fields": {
+      "name": "Smith, Montoya and Evans Power Unit",
+      "power": 769,
+      "price": 42
+    }
+  },
+  {
+    "model": "apps.powerunit",
+    "pk": 10,
+    "fields": {
+      "name": "Garcia, Humphrey and Baker Power Unit",
+      "power": 449,
+      "price": 106
     }
   }
 ]

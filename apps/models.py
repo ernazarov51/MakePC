@@ -87,15 +87,14 @@ class MotherBoard(Model):
     def __str__(self):
         return self.name
 
-class Type(Model):
-    name=CharField(max_length=255)
+
 class Other(Model):
 
     name=CharField(max_length=255)
     price=DecimalField(max_digits=10,decimal_places=2)
     power=SmallIntegerField(null=True,blank=True)
     category=ForeignKey('apps.Category',CASCADE,related_name='others',null=True,blank=True)
-    type=ForeignKey('apps.Type',CASCADE,related_name='others')
+    type=CharField(max_length=255)
 
     def __str__(self):
         return self.name
