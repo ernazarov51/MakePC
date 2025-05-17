@@ -1,40 +1,59 @@
 [
   {
-    "model": "apps.soket",
-    "pk": 1,
-    "fields": { "name": "AM4" }
-  },
-  {
-    "model": "apps.soket",
-    "pk": 2,
-    "fields": { "name": "LGA 1200" }
-  },
-  {
-    "model": "apps.soket",
-    "pk": 3,
-    "fields": { "name": "LGA 1700" }
-  },
-  {
     "model": "apps.category",
     "pk": 1,
-    "fields": { "name": "Processor" }
+    "fields": {
+      "name": "gaming"
+    }
   },
   {
     "model": "apps.category",
     "pk": 2,
-    "fields": { "name": "Graphics Card" }
+    "fields": {
+      "name": "office"
+    }
   },
   {
     "model": "apps.category",
     "pk": 3,
-    "fields": { "name": "Storage" }
+    "fields": {
+      "name": "montage"
+    }
+  },
+  {
+    "model": "apps.soket",
+    "pk": 1,
+    "fields": {
+      "name": "LGA1200"
+    }
+  },
+  {
+    "model": "apps.soket",
+    "pk": 2,
+    "fields": {
+      "name": "AM4"
+    }
+  },
+  {
+    "model": "apps.type",
+    "pk": 1,
+    "fields": {
+      "name": "SSD"
+    }
+  },
+  {
+    "model": "apps.type",
+    "pk": 2,
+    "fields": {
+      "name": "HDD"
+    }
   },
   {
     "model": "apps.cpu",
     "pk": 1,
     "fields": {
-      "name": "Ryzen 5 5600X",
-      "price": "199.99",
+      "name": "Intel i5 10400",
+      "price": "150.00",
       "soket": 1,
       "power": 65,
       "category": 1
@@ -44,30 +63,19 @@
     "model": "apps.cpu",
     "pk": 2,
     "fields": {
-      "name": "Intel i5 10400F",
-      "price": "150.00",
+      "name": "AMD Ryzen 5 3600",
+      "price": "180.00",
       "soket": 2,
       "power": 65,
-      "category": 1
-    }
-  },
-  {
-    "model": "apps.cpu",
-    "pk": 3,
-    "fields": {
-      "name": "Intel i7 12700K",
-      "price": "330.00",
-      "soket": 3,
-      "power": 125,
-      "category": 1
+      "category": 2
     }
   },
   {
     "model": "apps.motherboard",
     "pk": 1,
     "fields": {
-      "name": "ASUS TUF B550-PLUS",
-      "price": "139.99",
+      "name": "MSI B460M",
+      "price": "100.00",
       "soket": 1
     }
   },
@@ -75,100 +83,49 @@
     "model": "apps.motherboard",
     "pk": 2,
     "fields": {
-      "name": "Gigabyte B460M DS3H",
-      "price": "90.00",
+      "name": "ASUS TUF B550",
+      "price": "120.00",
       "soket": 2
     }
   },
   {
-    "model": "apps.motherboard",
-    "pk": 3,
-    "fields": {
-      "name": "MSI Z690 PRO-A",
-      "price": "189.99",
-      "soket": 3
-    }
-  },
-  {
     "model": "apps.other",
     "pk": 1,
     "fields": {
-      "name": "Samsung 980 PRO 1TB",
-      "price": "110.00",
-      "power": 6,
-      "category": 3,
-      "type": "ssd"
-    }
-  },
-  {
-    "model": "apps.other",
-    "pk": 2,
-    "fields": {
-      "name": "WD Blue 2TB HDD",
-      "price": "55.00",
-      "power": 7,
-      "category": 3,
-      "type": "hdd"
-    }
-  },
-  {
-    "model": "apps.other",
-    "pk": 3,
-    "fields": {
-      "name": "ASUS Dual RTX 3060",
-      "price": "340.00",
-      "power": 170,
-      "category": 2,
-      "type": "video_card"
-    }
-  },
-  {
-    "model": "apps.other",
-    "pk": 4,
-    "fields": {
-      "name": "Kingston A400 480GB",
+      "name": "Kingston SSD 240GB",
       "price": "35.00",
       "power": 5,
-      "category": 3,
-      "type": "ssd"
+      "category": 1,
+      "type": 1
     }
   },
   {
     "model": "apps.other",
-    "pk": 5,
+    "pk": 2,
     "fields": {
-      "name": "Gigabyte Radeon RX 6600",
-      "price": "299.00",
-      "power": 132,
+      "name": "WD HDD 1TB",
+      "price": "45.00",
+      "power": 6,
       "category": 2,
-      "type": "video_card"
+      "type": 2
     }
   },
   {
     "model": "apps.powerunit",
     "pk": 1,
     "fields": {
-      "name": "Cooler Master 650W Bronze",
-      "power": 650,
-      "price": 75
+      "name": "Corsair 550W",
+      "power": 550,
+      "price": 70
     }
   },
   {
     "model": "apps.powerunit",
     "pk": 2,
     "fields": {
-      "name": "DeepCool PK550D",
-      "power": 550,
-      "price": 60
-    }
-  },
-  {
-    "model": "apps.powerunit",
-    "pk": 3,
-    "fields": {
-      "name": "Thermaltake Smart RGB 700W",
-      "power": 700,
-      "price": 85
+      "name": "Cooler Master 650W",
+      "power": 650,
+      "price": 90
     }
   }
 ]

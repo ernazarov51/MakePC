@@ -87,16 +87,15 @@ class MotherBoard(Model):
     def __str__(self):
         return self.name
 
+class Type(Model):
+    name=CharField(max_length=255)
 class Other(Model):
-    class TypeChoices(TextChoices):
-        ssd='ssd','SSD'
-        hdd='hdd','HDD'
-        vide_card='video_card','Video Card'
+
     name=CharField(max_length=255)
     price=DecimalField(max_digits=10,decimal_places=2)
     power=SmallIntegerField(null=True,blank=True)
     category=ForeignKey('apps.Category',CASCADE,related_name='others',null=True,blank=True)
-    type=CharField(max_length=255,choices=TypeChoices.choices)
+    type=ForeignKey('apps.Type',CASCADE,related_name='others')
 
     def __str__(self):
         return self.name
@@ -120,3 +119,18 @@ class Comment(Model):
     text = TextField()
     post = ForeignKey('apps.Post', on_delete=CASCADE, related_name='comments')
     seller = ForeignKey('apps.User', on_delete=CASCADE, related_name='comments')
+
+
+class CategoryP(Model):
+    image=ImageField(upload_to='apps/images/category')
+    name=CharField(max_length=255)
+    def __str__(self):
+        return self.name
+
+class Product(Model):
+    image=ImageField(upload_to='apps/images/product')
+    name=CharField(max_length=255)
+    text=TextField()
+    price=SmallIntegerField()
+    category=ForeignKey('apps.CategoryP',on_delete=CASCADE,related_name='products')
+

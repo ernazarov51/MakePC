@@ -233,10 +233,7 @@ class OtherListAPIView(ListAPIView):
     serializer_class = OtherModelSerializer
 
     def get_queryset(self):
-        others = Other.objects.filter(
-            Q(type=Other.TypeChoices.vide_card, category_id=self.kwargs['category_id']) |
-            Q(type__in=[Other.TypeChoices.hdd, Other.TypeChoices.ssd])
-        )
+        others = Other.objects.all()
         return others
 
 @extend_schema(tags=['Customer Last Updates'],request=PowerUnitPostSerializer)
