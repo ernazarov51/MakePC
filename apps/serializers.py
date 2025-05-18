@@ -4,7 +4,7 @@ from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from apps.models import User, Post, Comment, Category, CPU, MotherBoard, PowerUnit, Soket, GPU, RAM, Memory, Coller, \
-    Keys, Monitor, Wifi, Accessor
+    Keys, Monitor, Wifi, Accessor, Product, CategoryP
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -283,7 +283,21 @@ class WifiModelSerializer(ModelSerializer):
         model = Wifi
         fields = '__all__'
 
+
 class AccessorModelSerializer(ModelSerializer):
     class Meta:
         model = Accessor
         fields = '__all__'
+
+
+class ProductModelSerializer(ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
+class CategoryPModelSerializer(ModelSerializer):
+    class Meta:
+        model = CategoryP
+        fields = '__all__'
+

@@ -10,7 +10,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from apps.models import User, Post, Comment, Category, CPU, MotherBoard, PowerUnit, Soket, GPU, RAM, Memory, Coller, \
-    Keys, Monitor, Wifi, Accessor
+    Keys, Monitor, Wifi, Accessor, Product, CategoryP
 from apps.permissions import IsSellerPermission, IsCustomerPermission, IsAdminPermission
 from apps.serializers import RegisterModelSerializer, CustomTokenObtainPairSerializer, ProfileModelSerializer, \
     AllPostForUserModelSerializer, PostDetailModelSerializer, SellerCommentModelSerializer, PostCreateModelSerializer, \
@@ -18,7 +18,8 @@ from apps.serializers import RegisterModelSerializer, CustomTokenObtainPairSeria
     CommentEditModelSerializer, CategoryUpdateModelSerializer, CPUModelSerializer, MotherBoardModelSerializer, \
     PowerUnitModelSerializer, PowerUnitPostSerializer, CPUCreateModelSerializer, \
     MotherBoardViewSetModelSerializer, SoketSerializer, GPUModelSerializer, RAMModelSerializer, MemoryModelSerializer, \
-    CollerModelSerializer, KeysModelSerializer, MonitorModelSerializer, WifiModelSerializer, AccessorModelSerializer
+    CollerModelSerializer, KeysModelSerializer, MonitorModelSerializer, WifiModelSerializer, AccessorModelSerializer, \
+    ProductModelSerializer, CategoryPModelSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -377,6 +378,7 @@ class RAMViewSet(ModelViewSet):
     serializer_class = RAMModelSerializer
     queryset = RAM.objects.all()
 
+
 @extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
 class MemoryViewSet(ModelViewSet):
     serializer_class = MemoryModelSerializer
@@ -387,20 +389,25 @@ class MemoryViewSet(ModelViewSet):
 class CollerViewSet(ModelViewSet):
     queryset = Coller.objects.all()
     serializer_class = CollerModelSerializer
+
+
 @extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
 class KeysViewSet(ModelViewSet):
     serializer_class = KeysModelSerializer
     queryset = Keys.objects.all()
+
 
 @extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
 class MonitorViewSet(ModelViewSet):
     serializer_class = MonitorModelSerializer
     queryset = Monitor.objects.all()
 
+
 @extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
 class WifiViewSet(ModelViewSet):
     serializer_class = WifiModelSerializer
     queryset = Wifi.objects.all()
+
 
 @extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
 class AccessorViewSet(ModelViewSet):
@@ -408,4 +415,19 @@ class AccessorViewSet(ModelViewSet):
     queryset = Accessor.objects.all()
 
 
+@extend_schema(tags=["Rasm qo'shiladigan narsalar"])
+class ProductViewSet(ModelViewSet):
+    serializer_class = ProductModelSerializer
+    queryset = Product.objects.all()
 
+
+@extend_schema(tags=["Rasm qo'shiladigan narsalar"])
+class CategoryPViewSet(ModelViewSet):
+    serializer_class = CategoryPModelSerializer
+    queryset = CategoryP.objects.all()
+
+
+@extend_schema(tags=["Rasm qo'shiladigan narsalar"])
+class ProductByCategoryIDRetRiveAPIView(RetrieveAPIView):
+    serializer_class = ProductModelSerializer
+    lookup_field = 'category_id'
