@@ -385,9 +385,8 @@ class MemoryViewSet(ModelViewSet):
 
 @extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
 class CollerViewSet(ModelViewSet):
-    serializer_class = CollerModelSerializer
     queryset = Coller.objects.all()
-
+    serializer_class = CollerModelSerializer
 @extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
 class KeysViewSet(ModelViewSet):
     serializer_class = KeysModelSerializer
@@ -407,3 +406,6 @@ class WifiViewSet(ModelViewSet):
 class AccessorViewSet(ModelViewSet):
     serializer_class = AccessorModelSerializer
     queryset = Accessor.objects.all()
+
+
+

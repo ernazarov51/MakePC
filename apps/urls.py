@@ -51,14 +51,14 @@ urlpatterns = [
     path('powerunit/', power_unit_api_view),
 
     # Second Updates For User
-    path('gpus/<int:category_id>/',AllGPUListAPIView.as_view()),
-    path('rams/<int:category_id>/',AllRamsListAPIView.as_view()),
-    path('memories/',AllMemoryModelSerializer.as_view()),
-    path('collers/<int:category_id>/',CollerListAPIView.as_view()),
-    path('keys/<int:category_id>/',KeysListAPIView.as_view()),
-    path('monitors/',MonitorListAPIView.as_view()),
-    path('wifi/',WifiListAPIView.as_view()),
-    path('accessories/',AccessorListAPIView.as_view()),
+    path('gpus-customer/<int:category_id>/',AllGPUListAPIView.as_view()),
+    path('rams-customer/<int:category_id>/',AllRamsListAPIView.as_view()),
+    path('memories-customer/',AllMemoryModelSerializer.as_view()),
+    path('collers-customer/<int:category_id>/',CollerListAPIView.as_view()),
+    path('keys-customer/<int:category_id>/',KeysListAPIView.as_view()),
+    path('monitors-customer/',MonitorListAPIView.as_view()),
+    path('wifi-customer/',WifiListAPIView.as_view()),
+    path('accessories-customer/',AccessorListAPIView.as_view()),
 
     # path('add-cpu/', CPUAddCreateAPIView.as_view()),
     # path('update-cpu/<int:pk>/', CPUUpdateAPIView.as_view()),
