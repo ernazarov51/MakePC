@@ -3,7 +3,8 @@ from rest_framework.fields import SerializerMethodField, CharField, IntegerField
 from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from apps.models import User, Post, Comment, Category, CPU, MotherBoard, Other, PowerUnit, Soket
+from apps.models import User, Post, Comment, Category, CPU, MotherBoard, PowerUnit, Soket, GPU, RAM, Memory, Coller, \
+    Keys, Monitor, Wifi, Accessor
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -190,7 +191,7 @@ class CategoryUpdateModelSerializer(ModelSerializer):
 class CPUModelSerializer(ModelSerializer):
     class Meta:
         model = CPU
-        fields = 'id', 'name', 'price', 'power','soket'
+        fields = 'id', 'name', 'price', 'power', 'soket'
 
 
 class MotherBoardModelSerializer(ModelSerializer):
@@ -204,10 +205,10 @@ class MotherBoardModelSerializer(ModelSerializer):
         return obj.soket.name
 
 
-class OtherModelSerializer(ModelSerializer):
-    class Meta:
-        model = Other
-        fields = '__all__'
+# class OtherModelSerializer(ModelSerializer):
+#     class Meta:
+#         model = Other
+#         fields = '__all__'
 
 
 class PowerUnitModelSerializer(ModelSerializer):
@@ -236,4 +237,53 @@ class MotherBoardViewSetModelSerializer(ModelSerializer):
 class SoketSerializer(ModelSerializer):
     class Meta:
         model = Soket
+        fields = '__all__'
+
+
+# ===============Second updates===============
+
+class GPUModelSerializer(ModelSerializer):
+    class Meta:
+        model = GPU
+        fields = '__all__'
+
+
+class RAMModelSerializer(ModelSerializer):
+    class Meta:
+        model = RAM
+        fields = '__all__'
+
+
+class MemoryModelSerializer(ModelSerializer):
+    class Meta:
+        model = Memory
+        fields = '__all__'
+
+
+class CollerModelSerializer(ModelSerializer):
+    class Meta:
+        model = Coller
+        fields = '__all__'
+
+
+class KeysModelSerializer(ModelSerializer):
+    class Meta:
+        model = Keys
+        fields = '__all__'
+
+
+class MonitorModelSerializer(ModelSerializer):
+    class Meta:
+        model = Monitor
+        fields = '__all__'
+
+
+class WifiModelSerializer(ModelSerializer):
+    class Meta:
+        model = Wifi
+        fields = '__all__'
+
+class AccessorModelSerializer(ModelSerializer):
+    class Meta:
+        model = Accessor
         fields = '__all__'

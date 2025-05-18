@@ -1,21 +1,33 @@
 from django.urls import path, include
 
+from apps.models import Wifi
 from apps.views import RegisterCreateAPIView, user_profile_api_view, PostsListAPIView, PostDetailRetrieveAPIView, \
     SellerCommentAPIView, PostCreateAPIView, CommentCreateAPIView, PostUpdateAPIView, PostDeleteAPIView, \
     CommentDeleteAPIView, AllPostsForSellerAPIView, AdminLoginApiView, CategoryCreateAPIView, GetCategoriesListAPIView, \
     EditCommentUpdateAPIView, CategoryUpdateAPIView, \
-    DeleteCategoryDestroyAPIView, CPUListAPIView, MotherBoardListAPIView, OtherListAPIView, \
+    DeleteCategoryDestroyAPIView, CPUListAPIView, MotherBoardListAPIView, \
     power_unit_api_view, CPUAddCreateAPIView, CPUUpdateAPIView, CPUDestroyAPIView, MotherBoardViewSet, SoketViewSet, \
-    OtherViewSet, PowerUnitViewSet, CPUModelViewSet
+    PowerUnitViewSet, CPUModelViewSet, AllGPUListAPIView, AllRamsListAPIView, AllMemoryModelSerializer, \
+    CollerListAPIView, KeysListAPIView, MonitorListAPIView, WifiListAPIView, AccessorListAPIView, GPUViewSet, \
+    RAMViewSet, MemoryViewSet, CollerViewSet, KeysViewSet, MonitorViewSet, WifiViewSet, AccessorViewSet
 
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'motherboards', MotherBoardViewSet)
 router.register(r'sokets', SoketViewSet)
-router.register(r'others', OtherViewSet)
+# router.register(r'others', OtherViewSet)
 router.register(r'powerunits', PowerUnitViewSet)
 router.register(r'cpus', CPUModelViewSet)
+router.register(r'gpus', GPUViewSet)
+router.register(r'rams', RAMViewSet)
+router.register(r'memories', MemoryViewSet)
+router.register(r'collers', CollerViewSet)
+router.register(r'keys', KeysViewSet)
+router.register(r'monitors', MonitorViewSet)
+router.register(r'wifi', WifiViewSet)
+router.register(r'accessors', AccessorViewSet)
+
 
 urlpatterns = [
     path('register/', RegisterCreateAPIView.as_view(), name='register'),
@@ -35,8 +47,18 @@ urlpatterns = [
 
     path('cpu/<int:category_id>/', CPUListAPIView.as_view()),
     path('motherboards-by-cpu/<int:cpu_id>/', MotherBoardListAPIView.as_view()),
-    path('others-by-category/<int:category_id>/', OtherListAPIView.as_view()),
+    # path('others-by-category/<int:category_id>/', OtherListAPIView.as_view()),
     path('powerunit/', power_unit_api_view),
+
+    # Second Updates For User
+    path('gpus/<int:category_id>/',AllGPUListAPIView.as_view()),
+    path('rams/<int:category_id>/',AllRamsListAPIView.as_view()),
+    path('memories/',AllMemoryModelSerializer.as_view()),
+    path('collers/<int:category_id>/',CollerListAPIView.as_view()),
+    path('keys/<int:category_id>/',KeysListAPIView.as_view()),
+    path('monitors/',MonitorListAPIView.as_view()),
+    path('wifi/',WifiListAPIView.as_view()),
+    path('accessories/',AccessorListAPIView.as_view()),
 
     # path('add-cpu/', CPUAddCreateAPIView.as_view()),
     # path('update-cpu/<int:pk>/', CPUUpdateAPIView.as_view()),

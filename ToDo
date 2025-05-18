@@ -23,3 +23,20 @@ endpoints:
         POST api/v1/create-product/{category_id}/ Admin yangi product yaratib category ga biriktiradi
 
 
+
+
+Second New Updates, USER PANEL:
+       GET api/v1/cpu/{segment_id} ushbu segmentga oid barcha cpu lar chiqadi
+       GET api/vq/motherboard-by-cpu/{cpu_id} cpu ga mos motherboardlar chiqadi
+
+       GET /api/v1/gpus/{segment_id}/  segment ga tegishli videokartalarni berib yuboramiz
+       GET /api/v1/rams/{segment_id}/ agar segment gaming bolsa DDR5 aks holda DDR4 bolgan ram larni yuboramiz
+       GET /api/v1/memories/ barcha xotira larni yuboramiz ssd/hdd - segmentlarga ajratish shart emas
+       GET /api/v1/collers/{segmetn_id}/ agar segment gaming bolsa kuchliroq coller lar chiqishi kerak
+       GET /api/v1/keys/{segment_id}/ ushbu segment ga tegishli key larni chiqadi
+
+       GET /api/vq/powerunit/ CPU power + GPU power => powerunit power lar chiqadi
+
+       GET /api/v1/monitors/  segmentidan qatiy nazar barcha monitorlar chiqadi
+       GET /api/v1/wifi/ segmentidan qatiy nazar barcha wifi chiqadi
+       GET /api/v1/accessories/ segmentidan qatiy nazar barcha aksessuarlar chiqadi sichqoncha,kovrig...

@@ -9,14 +9,16 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from apps.models import User, Post, Comment, Category, CPU, MotherBoard, Other, PowerUnit, Soket
+from apps.models import User, Post, Comment, Category, CPU, MotherBoard, PowerUnit, Soket, GPU, RAM, Memory, Coller, \
+    Keys, Monitor, Wifi, Accessor
 from apps.permissions import IsSellerPermission, IsCustomerPermission, IsAdminPermission
 from apps.serializers import RegisterModelSerializer, CustomTokenObtainPairSerializer, ProfileModelSerializer, \
     AllPostForUserModelSerializer, PostDetailModelSerializer, SellerCommentModelSerializer, PostCreateModelSerializer, \
     CommentCreateModelSerializer, EditPostModelSerializer, CreateCategoryModelSerializer, \
     CommentEditModelSerializer, CategoryUpdateModelSerializer, CPUModelSerializer, MotherBoardModelSerializer, \
-    OtherModelSerializer, PowerUnitModelSerializer, PowerUnitPostSerializer, CPUCreateModelSerializer, \
-    MotherBoardViewSetModelSerializer, SoketSerializer
+    PowerUnitModelSerializer, PowerUnitPostSerializer, CPUCreateModelSerializer, \
+    MotherBoardViewSetModelSerializer, SoketSerializer, GPUModelSerializer, RAMModelSerializer, MemoryModelSerializer, \
+    CollerModelSerializer, KeysModelSerializer, MonitorModelSerializer, WifiModelSerializer, AccessorModelSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -227,32 +229,31 @@ class MotherBoardListAPIView(ListAPIView):
         return super().get_queryset().filter(soket=soket)
 
 
-@extend_schema(tags=['Customer Last Updates'])
-class OtherListAPIView(ListAPIView):
-    queryset = Other.objects.all()
-    serializer_class = OtherModelSerializer
+# @extend_schema(tags=['Customer Last Updates'])
+# class OtherListAPIView(ListAPIView):
+#     queryset = Other.objects.all()
+#     serializer_class = OtherModelSerializer
+#
+#     def get_queryset(self):
+#         others = Other.objects.all()
+#         return others
 
-    def get_queryset(self):
-        others = Other.objects.all()
-        return others
-
-@extend_schema(tags=['Customer Last Updates'],request=PowerUnitPostSerializer)
+@extend_schema(tags=['Customer Last Updates'], request=PowerUnitPostSerializer)
 @api_view(['POST'])
 def power_unit_api_view(request):
-    cpu_power=request.data['cpu_power']
-    videocard_power=request.data['videocard_power']
+    cpu_power = request.data['cpu_power']
+    videocard_power = request.data['videocard_power']
 
-    overall=cpu_power+videocard_power
-    power_units=PowerUnit.objects.filter(power__gte=overall)
+    overall = cpu_power + videocard_power
+    power_units = PowerUnit.objects.filter(power__gte=overall)
     if power_units:
-        return Response(PowerUnitModelSerializer(power_units,many=True).data)
+        return Response(PowerUnitModelSerializer(power_units, many=True).data)
     return Response('Power Units not found')
 
 
 @extend_schema(tags=['Admin Last Updates'])
 class CPUAddCreateAPIView(CreateAPIView):
     serializer_class = CPUCreateModelSerializer
-
 
 
 @extend_schema(tags=['Admin Last Updates'])
@@ -280,17 +281,129 @@ class SoketViewSet(ModelViewSet):
     serializer_class = SoketSerializer
 
 
-@extend_schema(tags=['Admin Last Updates'])
-class OtherViewSet(ModelViewSet):
-    queryset = Other.objects.all()
-    serializer_class = OtherModelSerializer
+# @extend_schema(tags=['Admin Last Updates'])
+# class OtherViewSet(ModelViewSet):
+#     queryset = Other.objects.all()
+#     serializer_class = OtherModelSerializer
 
 @extend_schema(tags=['Admin Last Updates'])
 class PowerUnitViewSet(ModelViewSet):
     queryset = PowerUnit.objects.all()
     serializer_class = PowerUnitModelSerializer
 
+
 @extend_schema(tags=['Admin Last Updates'])
 class CPUModelViewSet(ModelViewSet):
     queryset = CPU.objects.all()
     serializer_class = CPUCreateModelSerializer
+
+
+# ======================= Second Update ===============
+
+@extend_schema(tags=['Customer Last Updates'])
+class AllGPUListAPIView(ListAPIView):
+    queryset = GPU.objects.all()
+    serializer_class = GPUModelSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(category_id=self.kwargs['category_id'])
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class AllRamsListAPIView(ListAPIView):
+    queryset = RAM.objects.all()
+    serializer_class = RAMModelSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        category = Category.objects.filter(id=self.kwargs['category_id']).first()
+        if category.name == Category.CategoryChoices.gaming:
+            return queryset.filter(type=RAM.TypeChoices.ddr5)
+        return queryset
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class AllMemoryModelSerializer(ListAPIView):
+    serializer_class = MemoryModelSerializer
+    queryset = Memory.objects.all()
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class CollerListAPIView(ListAPIView):
+    serializer_class = CollerModelSerializer
+    queryset = Coller.objects.all()
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(category_id=self.kwargs['category_id'])
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class KeysListAPIView(ListAPIView):
+    serializer_class = KeysModelSerializer
+    queryset = Keys.objects.all()
+
+    def get_queryset(self):
+        return super().get_queryset().filter(category_id=self.kwargs['category_id'])
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class MonitorListAPIView(ListAPIView):
+    serializer_class = MonitorModelSerializer
+    queryset = Monitor.objects.all()
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class WifiListAPIView(ListAPIView):
+    serializer_class = WifiModelSerializer
+    queryset = Wifi.objects.all()
+
+
+@extend_schema(tags=['Customer Last Updates'])
+class AccessorListAPIView(ListAPIView):
+    serializer_class = AccessorModelSerializer
+    queryset = Accessor.objects.all()
+
+
+@extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
+class GPUViewSet(ModelViewSet):
+    serializer_class = GPUModelSerializer
+    queryset = GPU.objects.all()
+
+
+@extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
+class RAMViewSet(ModelViewSet):
+    serializer_class = RAMModelSerializer
+    queryset = RAM.objects.all()
+
+@extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
+class MemoryViewSet(ModelViewSet):
+    serializer_class = MemoryModelSerializer
+    queryset = Memory.objects.all()
+
+
+@extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
+class CollerViewSet(ModelViewSet):
+    serializer_class = CollerModelSerializer
+    queryset = Coller.objects.all()
+
+@extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
+class KeysViewSet(ModelViewSet):
+    serializer_class = KeysModelSerializer
+    queryset = Keys.objects.all()
+
+@extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
+class MonitorViewSet(ModelViewSet):
+    serializer_class = MonitorModelSerializer
+    queryset = Monitor.objects.all()
+
+@extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
+class WifiViewSet(ModelViewSet):
+    serializer_class = WifiModelSerializer
+    queryset = Wifi.objects.all()
+
+@extend_schema(tags=["Adminga yangi qo'shilgan narsalar"])
+class AccessorViewSet(ModelViewSet):
+    serializer_class = AccessorModelSerializer
+    queryset = Accessor.objects.all()

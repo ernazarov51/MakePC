@@ -65,47 +65,40 @@ class Category(Model):
 
 
 class Soket(Model):
-    name=CharField(max_length=255)
+    name = CharField(max_length=255)
+
     def __str__(self):
         return self.name
+
 
 class CPU(Model):
-    name=CharField(max_length=255)
-    price=DecimalField(max_digits=10,decimal_places=2)
-    soket=ForeignKey('apps.Soket',CASCADE,related_name='cpus')
-    power=SmallIntegerField()
-    category=ForeignKey('apps.Category',CASCADE,related_name='cpus')
+    name = CharField(max_length=255)
+    price = DecimalField(max_digits=10, decimal_places=2)
+    soket = ForeignKey('apps.Soket', CASCADE, related_name='cpus')
+    power = SmallIntegerField()
+    category = ForeignKey('apps.Category', CASCADE, related_name='cpus')
 
     def __str__(self):
         return self.name
+
 
 class MotherBoard(Model):
-    name=CharField(max_length=255)
-    price=DecimalField(max_digits=10,decimal_places=2)
-    soket=ForeignKey('apps.Soket',CASCADE,related_name='motherboards')
+    name = CharField(max_length=255)
+    price = DecimalField(max_digits=10, decimal_places=2)
+    soket = ForeignKey('apps.Soket', CASCADE, related_name='motherboards')
 
     def __str__(self):
         return self.name
 
-
-class Other(Model):
-
-    name=CharField(max_length=255)
-    price=DecimalField(max_digits=10,decimal_places=2)
-    power=SmallIntegerField(null=True,blank=True)
-    category=ForeignKey('apps.Category',CASCADE,related_name='others',null=True,blank=True)
-    type=CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
 
 class PowerUnit(Model):
-    name=CharField(max_length=255)
-    power=SmallIntegerField()
-    price=SmallIntegerField()
+    name = CharField(max_length=255)
+    power = SmallIntegerField()
+    price = SmallIntegerField()
 
     def __str__(self):
         return self.name
+
 
 class Post(Model):
     text = TextField()
@@ -121,15 +114,68 @@ class Comment(Model):
 
 
 class CategoryP(Model):
-    image=ImageField(upload_to='apps/images/category')
-    name=CharField(max_length=255)
+    image = ImageField(upload_to='apps/images/category')
+    name = CharField(max_length=255)
+
     def __str__(self):
         return self.name
 
-class Product(Model):
-    image=ImageField(upload_to='apps/images/product')
-    name=CharField(max_length=255)
-    text=TextField()
-    price=SmallIntegerField()
-    category=ForeignKey('apps.CategoryP',on_delete=CASCADE,related_name='products')
 
+class Product(Model):
+    image = ImageField(upload_to='apps/images/product')
+    name = CharField(max_length=255)
+    text = TextField()
+    price = SmallIntegerField()
+    category = ForeignKey('apps.CategoryP', on_delete=CASCADE, related_name='products')
+
+
+class GPU(Model):
+    name = CharField(max_length=255)
+    category = ForeignKey('apps.Category', on_delete=CASCADE, related_name='gpus')
+    price = SmallIntegerField()
+    power = SmallIntegerField(null=True, blank=True)
+
+
+class RAM(Model):
+    class TypeChoices(TextChoices):
+        ddr4 = 'ddr4', 'DDR4'
+        ddr5 = 'ddr5', 'DDR5'
+
+    name = CharField(max_length=255)
+    price = SmallIntegerField()
+    type = CharField(max_length=10, choices=TypeChoices.choices)
+    category = ForeignKey('apps.Category', on_delete=CASCADE, related_name='rams')
+    power = SmallIntegerField(null=True, blank=True)
+
+
+class Memory(Model):
+    name = CharField(max_length=255)
+    price = SmallIntegerField()
+
+
+class Coller(Model):
+    name = CharField(max_length=255)
+    price = SmallIntegerField()
+    category = ForeignKey('apps.Category', on_delete=CASCADE, related_name='collers')
+
+
+class Keys(Model):
+    name = CharField(max_length=255)
+    price = SmallIntegerField()
+    category = ForeignKey('apps.Category', on_delete=CASCADE, related_name='keys')
+
+
+class Monitor(Model):
+    name = CharField(max_length=255)
+    price = SmallIntegerField()
+    pixel = CharField(max_length=255)
+
+
+class Wifi(Model):
+    name = CharField(max_length=255)
+    price = SmallIntegerField()
+
+
+class Accessor(Model):
+    name = CharField(max_length=255)
+    price = SmallIntegerField()
