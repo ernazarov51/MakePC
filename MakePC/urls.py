@@ -14,11 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from MakePC.settings import MEDIA_URL, MEDIA_ROOT
 from apps.views import CustomTokenObtainPairView
 
 urlpatterns = [
@@ -30,4 +32,4 @@ path('api/v1/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pa
     path('redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('admin/', admin.site.urls),
     path('api/v1/', include('apps.urls')),
-]
+]+ static(MEDIA_URL, document_root=MEDIA_ROOT)
