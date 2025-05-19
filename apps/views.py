@@ -428,6 +428,10 @@ class CategoryPViewSet(ModelViewSet):
 
 
 @extend_schema(tags=["Rasm qo'shiladigan narsalar"])
-class ProductByCategoryIDRetRiveAPIView(RetrieveAPIView):
+class ProductByCategoryIDListAPIView(ListAPIView):
     serializer_class = ProductModelSerializer
-    lookup_field = 'category_id'
+    queryset = Product.objects.all()
+
+    def get_queryset(self):
+        queryset=super().get_queryset()
+        return queryset.filter(category_id=self.kwargs['category_id'])

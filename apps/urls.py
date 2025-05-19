@@ -10,7 +10,7 @@ from apps.views import RegisterCreateAPIView, user_profile_api_view, PostsListAP
     PowerUnitViewSet, CPUModelViewSet, AllGPUListAPIView, AllRamsListAPIView, AllMemoryModelSerializer, \
     CollerListAPIView, KeysListAPIView, MonitorListAPIView, WifiListAPIView, AccessorListAPIView, GPUViewSet, \
     RAMViewSet, MemoryViewSet, CollerViewSet, KeysViewSet, MonitorViewSet, WifiViewSet, AccessorViewSet, \
-    CategoryPViewSet, ProductViewSet, ProductByCategoryIDRetRiveAPIView
+    CategoryPViewSet, ProductViewSet, ProductByCategoryIDListAPIView
 
 from rest_framework.routers import DefaultRouter
 
@@ -63,7 +63,7 @@ urlpatterns = [
     path('monitors-customer/',MonitorListAPIView.as_view()),
     path('wifi-customer/',WifiListAPIView.as_view()),
     path('accessories-customer/',AccessorListAPIView.as_view()),
-    path('categoryp-product/<int:category_id>/',ProductByCategoryIDRetRiveAPIView.as_view()),
+    path('categoryp-product/<int:category_id>/',ProductByCategoryIDListAPIView.as_view()),
 
     # path('add-cpu/', CPUAddCreateAPIView.as_view()),
     # path('update-cpu/<int:pk>/', CPUUpdateAPIView.as_view()),
